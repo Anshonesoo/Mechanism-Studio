@@ -1,0 +1,22 @@
+{
+  "name": "mechanism-studio",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Web tool to sketch planar mechanisms (linkages, gears, racks, sliders, planetary trains) and animate them with a constraint solver.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node tests/engine.test.mjs && node tests/script.test.mjs"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zustand": "^4.5.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^5.4.11"
+  }
+}
