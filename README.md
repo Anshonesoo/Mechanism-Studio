@@ -31,11 +31,19 @@
 
 URL 参数：`?mode=l2d`、`?template=planetary`、`?tour=0`（跳过引导）、`?script=1`（直接开积木面板）。
 
-## 线上部署
+## 线上部署（已上线）
 
-已配置 GitHub Pages：推送后在仓库 **Settings → Pages → Source 选 “GitHub Actions”**，之后每次 push 到 `main`/`master` 会自动跑测试、构建并发布。
+- 站点：**https://anshonesoo.github.io/Mechanism-Studio/**
+- 仓库：https://github.com/Anshonesoo/Mechanism-Studio
 
-`.github/workflows/deploy.yml` 会执行 `npm ci` → `npm test` → `npm run build`，把 `dist/` 发布出去。`vite.config.js` 里 `base: './'` 保证部署在 `用户名.github.io/仓库名/` 子路径也能正常加载资源。
+Pages 的源设为 **`gh-pages` 分支**。更新站点：
+
+- 双击 `deploy.cmd` —— 自动 `npm run build` 并把 `dist/` 推到 `gh-pages`，约 1 分钟后生效
+- 或命令行：`powershell -NoProfile -File scripts\deploy-gh-pages.ps1 -Message "更新说明"`
+
+`vite.config.js` 里 `base: './'` 保证在 `用户名.github.io/仓库名/` 子路径下资源能正确加载。
+
+**可选：改成 push 自动部署**。仓库里已备好 `.github/workflows/deploy.yml`（本地未提交，因为当前推送凭据没有 `workflow` 权限）。想启用就在 GitHub 网页端新建 `.github/workflows/deploy.yml` 并粘贴该文件内容，之后 push 到 `main` 会自动跑测试、构建并发布到 `gh-pages`。
 
 ## 机构模式
 
@@ -93,9 +101,9 @@ URL 参数：`?mode=l2d`、`?template=planetary`、`?tour=0`（跳过引导）�
 ```
 （仓库根）
   index.html  package.json  vite.config.js  README.md
-  start.cmd  stop.cmd  serve.cmd
-  .github/workflows/deploy.yml
-  scripts/   start-dev.ps1  stop-dev.ps1  serve-dist.mjs
+  start.cmd  stop.cmd  serve.cmd  deploy.cmd
+  .github/workflows/deploy.yml（可选，需网页端添加）
+  scripts/   start-dev.ps1  stop-dev.ps1  serve-dist.mjs  deploy-gh-pages.ps1
   src/
     engine/  math.js world.js constraints.js profile.js templates.js rig.js script.js
     render/  camera.js renderer.js sprites.js
